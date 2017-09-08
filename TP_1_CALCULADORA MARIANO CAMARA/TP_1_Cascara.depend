@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1504670030 source:c:\users\matias.camara\desktop\mariano\github\ejercicios-programacion\tp_1_cascara\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1504668844 c:\users\matias.camara\desktop\mariano\github\ejercicios-programacion\tp_1_cascara\funciones.h
+
+1504670522 source:c:\users\matias.camara\desktop\mariano\github\ejercicios-programacion\tp_1_cascara\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1504884707 source:c:\users\matias.camara\desktop\mariano\github\ejercicios-programacion\tp_1_calculadora\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+	<ctype.h>
+
+1504884211 c:\users\matias.camara\desktop\mariano\github\ejercicios-programacion\tp_1_calculadora\funciones.h
+
+1504884200 source:c:\users\matias.camara\desktop\mariano\github\ejercicios-programacion\tp_1_calculadora\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
