@@ -25,11 +25,11 @@ int main()
         }
         if(flagNumeroDosIngresado==0)
         {
-            printf("2- Ingresar 1er operando (B = x)\n");
+            printf("2- Ingresar 2do operando (B = x)\n");
         }
         else
         {
-            printf("2- Ingresar 1er operando (B = %.2f)\n",numeroDos);
+            printf("2- Ingresar 2do operando (B = %.2f)\n",numeroDos);
         }
         printf("3- Calcular la suma (A+B)\n");
         printf("4- Calcular la resta (A-B)\n");
