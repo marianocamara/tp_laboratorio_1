@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "funciones.h"
-#include <ctype.h>
 
 int main()
 {
@@ -14,6 +13,7 @@ int main()
 
     while(seguir=='s')
     {
+        system("cls");
         printf("\nElija una de las opciones del menu:\n\n");
         if(flagNumeroUnoIngresado==0)
         {
@@ -23,7 +23,7 @@ int main()
         {
             printf("1- Ingresar 1er operando (A = %.2f)\n",numeroUno);
         }
-         if(flagNumeroDosIngresado==0)
+        if(flagNumeroDosIngresado==0)
         {
             printf("2- Ingresar 1er operando (B = x)\n");
         }
@@ -39,39 +39,79 @@ int main()
         printf("8- Calcular todas las operaciones\n");
         printf("9- Salir\n\n\n");
 
-
         scanf("%d",&opcion);
 
-            switch(opcion)
+        switch(opcion)
+        {
+        case 1:
+            numeroUno = obtenerFloat ("\nIngrese el primer numero: ");
+            flagNumeroUnoIngresado=1;
+            break;
+        case 2:
+            numeroDos = obtenerFloat ("\nIngrese el segundo numero: ");
+            flagNumeroDosIngresado=1;
+            break;
+        case 3:
+            if (flagNumeroUnoIngresado == 0 || flagNumeroDosIngresado == 0)
             {
-            case 1:
-                numeroUno = obtenerFloat ("\nIngrese el primer numero: ");
-                flagNumeroUnoIngresado=1;
-                break;
-            case 2:
-                numeroDos = obtenerFloat ("\nIngrese el segundo numero: ");
-                flagNumeroDosIngresado=1;
-                break;
-            case 3:
+                printf("Debe ingresar ambos operandos antes de realizar este calculo\n");
+            }
+            else
+            {
                 printf("\nEl resultado de la suma es %.2f\n", sumaDeNumeros (numeroUno, numeroDos));
-                break;
-            case 4:
+            }
+            break;
+        case 4:
+            if (flagNumeroUnoIngresado == 0 || flagNumeroDosIngresado == 0)
+            {
+                printf("Debe ingresar ambos operandos antes de realizar este calculo\n");
+            }
+            else
+            {
                 printf("\nEl resultado de la resta es %.2f\n", restaDeNumeros (numeroUno, numeroDos));
-                break;
-            case 5:
-                if (divisionDeNumeros (numeroUno, numeroDos, &resultadoDivision) != -1)
-                {
-                    printf("\nEl resultado de la division es %.2f\n", resultadoDivision);
-                }
-                else
-                {
-                    printf("\nERROR No se puede dividir por 0. Ingrese otro numero.\n");
-                }
-                break;
-            case 6:
+            }
+            break;
+        case 5:
+            if (flagNumeroUnoIngresado == 0 || flagNumeroDosIngresado == 0)
+            {
+                printf("Debe ingresar ambos operandos antes de realizar este calculo\n");
+            }
+            else if (divisionDeNumeros (numeroUno, numeroDos, &resultadoDivision) != -1)
+            {
+                printf("\nEl resultado de la division es %.2f\n", resultadoDivision);
+            }
+            else
+            {
+                printf("\nERROR No se puede dividir por 0. Ingrese otro numero.\n");
+            }
+            break;
+        case 6:
+            if (flagNumeroUnoIngresado == 0 || flagNumeroDosIngresado == 0)
+            {
+                printf("Debe ingresar ambos operandos antes de realizar este calculo\n");
+            }
+            else
+            {
                 printf("\nEl resultado de la multiplicacion es %.2f\n", multiplicacionDeNumeros (numeroUno, numeroDos));
-                break;
-            case 7:
+            }
+            break;
+        case 7:
+            if (flagNumeroUnoIngresado == 0 )
+            {
+                printf("Debe ingresar el primer operando antes de realizar este calculo\n");
+            }
+            else if (factorialDeUnNumero(numeroUno) != -1)
+            {
+                printf("El factorial es %d\n", factorialDeUnNumero ( numeroUno));
+            }
+            else
+            {
+                printf("Esta funcion solo calcula el factorial de un numero entero positivo.\n");
+            }
+            break;
+        case 8:
+            if (flagNumeroUnoIngresado == 1 && flagNumeroDosIngresado == 0)
+            {
                 if (factorialDeUnNumero(numeroUno) != -1)
                 {
                     printf("El factorial es %d\n", factorialDeUnNumero ( numeroUno));
@@ -80,8 +120,11 @@ int main()
                 {
                     printf("Esta funcion solo calcula el factorial de un numero entero positivo.\n");
                 }
-                break;
-            case 8:
+                printf("Debe ingresar ambos operandos antes de realizar el resto de las operaciones\n");
+
+            }
+            else if (flagNumeroUnoIngresado == 1 && flagNumeroDosIngresado == 1)
+            {
                 printf("\nEl resultado de la suma es %.2f\n", sumaDeNumeros (numeroUno, numeroDos));
                 printf("El resultado de la resta es %.2f\n", restaDeNumeros (numeroUno, numeroDos));
                 if (divisionDeNumeros (numeroUno, numeroDos, &resultadoDivision) != -1)
@@ -101,13 +144,19 @@ int main()
                 {
                     printf("Esta funcion solo calcula el factorial de un numero entero positivo.\n");
                 }
-                break;
-            case 9:
-                seguir = 'n';
-                break;
-            default:
-                printf("\nIngrese una opcion valida\n");
             }
+            else
+            {
+                 printf("Debe ingresar ambos operandos antes de realizar las operaciones\n");
+            }
+            break;
+        case 9:
+            seguir = 'n';
+            break;
+        default:
+            printf("\nIngrese una opcion valida\n");
         }
+        system("pause");
+    }
     return 0;
 }
