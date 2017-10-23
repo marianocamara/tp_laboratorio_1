@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1508746295 source:c:\users\matias.camara\desktop\mariano\github\tp3\tp_3_cascara\main.c
+	<stdio.h>
+	<stdlib.h>
+	"movie.h"
+	"validar.h"
+
+1508744331 c:\users\matias.camara\desktop\mariano\github\tp3\tp_3_cascara\movie.h
+
+1508743012 c:\users\matias.camara\desktop\mariano\github\tp3\tp_3_cascara\validar.h
+
+1508745700 source:c:\users\matias.camara\desktop\mariano\github\tp3\tp_3_cascara\movie.c
+	<stdio.h>
+	<stdlib.h>
+	"movie.h"
+	"validar.h"
+	<string.h>
+
+1508743117 source:c:\users\matias.camara\desktop\mariano\github\tp3\tp_3_cascara\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"validar.h"
+

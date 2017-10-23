@@ -1,0 +1,15 @@
+
+<article class='col-md-4 article-intro'>
+	<a href='#'>
+                   <img class='img-responsive img-rounded' src='%s' alt=''>
+	</a>
+        <h3>
+		<a href='#'>%s</a>
+        </h3>
+	<ul>
+		<li>Género: %s</li>
+		<li>Puntaje: %d</li>
+		<li>Duración: %d</li>					
+	</ul>
+	<p>%s</p>
+</article>

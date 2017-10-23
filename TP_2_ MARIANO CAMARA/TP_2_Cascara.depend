@@ -22,3 +22,26 @@
 	<string.h>
 	"validar.h"
 
+1506120468 source:c:\users\matias.camara\desktop\mariano\github\tp_laboratorio_1\tp_2_ mariano camara\main.c
+	<stdio.h>
+	<stdlib.h>
+	"persona.h"
+	"validar.h"
+
+1506119598 c:\users\matias.camara\desktop\mariano\github\tp_laboratorio_1\tp_2_ mariano camara\persona.h
+
+1506115841 c:\users\matias.camara\desktop\mariano\github\tp_laboratorio_1\tp_2_ mariano camara\validar.h
+
+1506120573 source:c:\users\matias.camara\desktop\mariano\github\tp_laboratorio_1\tp_2_ mariano camara\persona.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"persona.h"
+	"validar.h"
+
+1506120468 source:c:\users\matias.camara\desktop\mariano\github\tp_laboratorio_1\tp_2_ mariano camara\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"validar.h"
+
