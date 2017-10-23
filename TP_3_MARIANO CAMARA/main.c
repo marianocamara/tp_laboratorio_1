@@ -31,6 +31,7 @@ int main()
                     mov_escribirArchivoBinario(listaMovies,LEN_MOVIES);
                 break;
             case 3:
+                mov_listarMovies(listaMovies,LEN_MOVIES);
                 if(mov_modificar(listaMovies,LEN_MOVIES) == 0)
                     mov_escribirArchivoBinario(listaMovies,LEN_MOVIES);
                 break;

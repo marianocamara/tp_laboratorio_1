@@ -3,7 +3,7 @@
 #include <string.h>
 #include "validar.h"
 
-#define MAX_INPUT_BUFFER 500
+#define MAX_INPUT_BUFFER 1001
 
 /** \brief obtiene un dato con fgets, asigna '\0' al LF
  * \param buffer donde guarda lo que ingresa el usuario
@@ -41,7 +41,7 @@ int val_getNombre(char* destino, char* mensaje,char* mensajeError,int intentos,i
 {
 
     int retorno = -1;
-    char buffer[50];
+    char buffer[MAX_INPUT_BUFFER];
 
     if(destino != NULL && limite > 0 && limite < MAX_INPUT_BUFFER)
     {
@@ -89,70 +89,6 @@ int val_validarNombre(char* buffer)
     return retorno;
 }
 
-/** \brief Obtiene input usuario (myFgets) que deben ser solo letras y/o numeros, y un punto (validarNombreVideo)
- * \param array de caracteres del destino
- * \param mensaje con indicaciones para el usuario
- * \param mensaje de error
- * \param cantidad oportunidades que el usuario tiene para ingresar los datos correctamente
- * \param longitud del array destino
- * \return -1 ingreso erroneo luego de los intentos o error d parametros -- 0 ok
- */
-int val_getNombreVideo(char* destino, char* mensaje,char* mensajeError,int intentos,int limite)
-{
-
-    int retorno = -1;
-    char buffer[50];
-
-    if(destino != NULL && limite > 0 && limite < MAX_INPUT_BUFFER)
-    {
-        printf(mensaje);
-        for( ; intentos>0; intentos--)
-        {
-            myFgets(buffer, limite,stdin);
-
-            if(val_validarNombreVideo(buffer) == 0)
-            {
-                printf(mensajeError);
-                continue;
-            }
-            else
-            {
-                strncpy(destino,buffer,limite);
-                retorno = 0;
-                break;
-            }
-        }
-    }
-    return retorno;
-}
-
-/**
- * \brief Verifica si el valor recibido contiene los caracteres aceptados en el nombre de un archivo de video, letras, numeros y un punto
- * \param char buffer con la cadena a ser analizada
- * \return 0 si solo contiene letras, numeros y un punto y -1 error
- *
- */
-
-int val_validarNombreVideo(char str[])
-{
-    int i=0;
-
-    int cantidadPuntos=0;
-    while(str[i] != '\0')
-    {
-        if (str[i] == '.' && cantidadPuntos == 0)
-        {
-            cantidadPuntos++;
-            i++;
-            continue;
-
-        }
-        if((str[i] != ' ') && (str[i] < 'a' || str[i] > 'z') && (str[i] < 'A' || str[i] > 'Z') && (str[i] < '0' || str[i] > '9'))
-            return 0;
-        i++;
-    }
-    return 1;
-}
 
 /** \brief Obtiene input usuario (myFgets) que deben ser solo numeros (validarUnsignedInt)
  * \param array de caracteres del destino
@@ -204,136 +140,6 @@ int val_validarUnsignedInt(char* buffer)
     while(buffer[i] != '\0')
     {
         if(buffer[i] < '0' || buffer[i] > '9' )
-        {
-            retorno = -1;
-            break;
-        }
-        i++;
-    }
-    return retorno;
-}
-
-/** \brief Obtiene CUIT input usuario (myFgets) que deben ser solo numeros (val_esCuit)
- * \param array de caracteres del destino
- * \param mensaje con indicaciones para el usuario
- * \param mensaje de error
- * \param cantidad oportunidades que el usuario tiene para ingresar los datos correctamente
- * \param longitud del array destino
- * \return -1 ingreso erroneo luego de los intentos o error d parametros -- 0 ok
- */
-int val_getCuit(char* destino, char* mensaje,char* mensajeError,int intentos,int limite)
-{
-    int retorno = -1;
-    char buffer[MAX_INPUT_BUFFER];
-
-    if(destino != NULL && limite > 0 && limite < MAX_INPUT_BUFFER)
-    {
-        printf(mensaje);
-        for( ; intentos>0; intentos--)
-        {
-
-            myFgets(buffer, limite,stdin);
-
-            if(val_esCuit(buffer) == -1)
-            {
-                printf(mensajeError);
-                continue;
-            }
-            else
-            {
-                strncpy(destino,buffer,limite);
-                retorno = 0;
-                break;
-            }
-        }
-    }
-    return retorno;
-}
-
-/**
- * \brief Verifica si el valor recibido contiene solo numeros, y dos guiones (CUIT)
- * \param str Array con la cadena a ser analizada
- * \return 0 si solo contiene numeros y -1 error
- *
- */
-int val_esCuit(char* buffer)
-{
-
-    int i=0;
-    int cantidadGuiones = 0;
-    int retorno = 0;
-    while(buffer[i] != '\0')
-    {
-        if((buffer[i] < '0' || buffer[i] > '9') && buffer[i] != '-' )
-        {
-            retorno = -1;
-            break;
-        }
-        if (buffer[i] == '-')
-        {
-            cantidadGuiones++;
-        }
-
-        i++;
-    }
-    if (cantidadGuiones != 2)
-        {
-            retorno = -1;
-        }
-    return retorno;
-}
-
-/** \brief Obtiene un enterp (myFgets) que deben ser numericos 0 o 1 (val_validarTipoPantalla)
- * \param array de caracteres del destino
- * \param mensaje con indicaciones para el usuario
- * \param mensaje de error
- * \param cantidad oportunidades que el usuario tiene para ingresar los datos correctamente
- * \param longitud del array destino
- * \return -1 ingreso erroneo luego de los intentos o error d parametros -- 0 ok
- */
-int val_getTipoPantalla(char* destino, char* mensaje,char* mensajeError,int intentos,int limite)
-{
-    int retorno = -1;
-    char buffer[MAX_INPUT_BUFFER];
-
-    if(destino != NULL && limite > 0 && limite < MAX_INPUT_BUFFER)
-    {
-        printf(mensaje);
-        for( ; intentos>0; intentos--)
-        {
-
-            myFgets(buffer, limite,stdin);
-
-            if(val_validarTipoPantalla(buffer) == -1)
-            {
-                printf(mensajeError);
-                continue;
-            }
-            else
-            {
-                strncpy(destino,buffer,limite);
-                retorno = 0;
-                break;
-            }
-        }
-    }
-    return retorno;
-}
-
-
-/**
- * \brief Verifica si el valor recibido contiene los numeros 0 o 1
- * \param str Array con la cadena a ser analizada
- * \return 0 si es 0 o 1 y -1 error
- *
- */
-int val_validarTipoPantalla(char* buffer)
-{
-    int i=0;
-    int retorno = 0;
-    while(buffer[i] != '\0')
-    {
-        if(buffer[i] < '0' || buffer[i] > '1' )
         {
             retorno = -1;
             break;
@@ -430,43 +236,6 @@ int val_esNumericoFlotante(char* buffer)
     return 1;
 }
 
-/** \brief Obtiene una direccion, arrat de char (myFgets) que deben ser alfanumericos aceptando espacios (val_esALfaNumerico)
- * \param array de caracteres del destino
- * \param mensaje con indicaciones para el usuario
- * \param mensaje de error
- * \param cantidad oportunidades que el usuario tiene para ingresar los datos correctamente
- * \param longitud del array destino
- * \return -1 ingreso erroneo luego de los intentos o error d parametros -- 0 ok
- */
-int val_getDireccion(char* destino, char* mensaje,char* mensajeError,int intentos,int limite)
-{
-
-    int retorno = -1;
-    char buffer[50];
-
-    if(destino != NULL && limite > 0 && limite < MAX_INPUT_BUFFER)
-    {
-        printf(mensaje);
-        for( ; intentos>0; intentos--)
-        {
-            myFgets(buffer, limite,stdin);
-
-            if(val_esAlfaNumerico(buffer) == 0)
-            {
-                printf(mensajeError);
-                continue;
-            }
-            else
-            {
-                strncpy(destino,buffer,limite);
-                retorno = 0;
-                break;
-            }
-        }
-    }
-    return retorno;
-}
-
 
 
 /** \brief Obtiene input usuario (myFgets) que deben ser solo letras (validarNombre)
@@ -482,7 +251,7 @@ int val_getLink(char* destino, char* mensaje,char* mensajeError,int intentos,int
 {
 
     int retorno = -1;
-    char buffer[50];
+    char buffer[MAX_INPUT_BUFFER];
 
     if(destino != NULL && limite > 0 && limite < MAX_INPUT_BUFFER)
     {

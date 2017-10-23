@@ -127,21 +127,21 @@ int mov_alta(EMovie* listaMovies, int lenLista)
             char bufferTitulo[50];
             char bufferGenero[50];
             char bufferDuracion[50];
-            char bufferDescripcion[50];
+            char bufferDescripcion[1000];
             char bufferPuntaje[50];
-            char bufferLinkImagen[50];
+            char bufferLinkImagen[1000];
 
-            if (val_getNombre(bufferTitulo,"Ingrese titulo de la pelicula:\n","Ingrese un titulo valido:\n",2,50)!= -1)
+            if (val_getLink(bufferTitulo,"Ingrese titulo de la pelicula:\n","Ingrese un titulo valido:\n",2,50)!= -1)
             {
                 if (val_getNombre(bufferGenero,"Ingrese genero de la pelicula:\n","Ingrese un genero valido:\n",2,50) != -1 )
                 {
                     if (val_getUnsignedInt(bufferDuracion,"Ingrese la duracion de la pelicula:\n","Ingrese un numero valido:\n",2,50) != -1 )
                     {
-                        if (val_getNombre(bufferDescripcion,"Ingrese la descripcion de la pelicula\n","\nIngrese una descripcion valida\n",2,50) != -1 )
+                        if (val_getLink(bufferDescripcion,"Ingrese la descripcion de la pelicula\n","\nIngrese una descripcion valida\n",2,1000) != -1 )
                         {
                             if (val_getUnsignedInt(bufferPuntaje,"Ingrese el puntaje de la pelicula:\n","Ingrese un numero valido:\n",2,50) != -1 )
                             {
-                                if (val_getLink(bufferLinkImagen,"Ingrese el link de la imagen de la pelicula\n","\nIngrese una link valido\n",2,50) != -1 )
+                                if (val_getLink(bufferLinkImagen,"Ingrese el link de la imagen de la pelicula\n","\nIngrese una link valido\n",2,1000) != -1 )
                                 {
 
                                     idNuevo = mov_GenerarNuevoId(listaMovies,lenLista);
@@ -151,9 +151,9 @@ int mov_alta(EMovie* listaMovies, int lenLista)
                                     strncpy(listaMovies[indexVacio].titulo,bufferTitulo,50);
                                     strncpy(listaMovies[indexVacio].genero,bufferGenero,50);
                                     listaMovies[indexVacio].duracion = atoi(bufferDuracion);
-                                    strncpy(listaMovies[indexVacio].descripcion,bufferDescripcion,50);
+                                    strncpy(listaMovies[indexVacio].descripcion,bufferDescripcion,1000);
                                     listaMovies[indexVacio].puntaje = atoi(bufferPuntaje);
-                                    strncpy(listaMovies[indexVacio].linkImagen,bufferLinkImagen,50);
+                                    strncpy(listaMovies[indexVacio].linkImagen,bufferLinkImagen,1000);
                                     printf("\nSe han cargado los datos exitosamente.\n");
 
                                     retorno = 0;
@@ -173,7 +173,7 @@ int mov_alta(EMovie* listaMovies, int lenLista)
 }
 
 
-/** \brief Carga todos los campos de la entidad en un index vacio y genera su id, validando datos ingresados en cada caso
+/** \brief Permite modificar los campos de la entidad a partir de la eleccion del id
  *
  * \param puntero array listaMovies de entidad
  * \param lenLista int Longitud del listaMovies
@@ -188,7 +188,7 @@ int mov_modificar(EMovie* listaMovies, int lenLista)
 
     if(listaMovies != NULL && lenLista > 0)
     {
-        if (val_getUnsignedInt(bufferIdModificar,"\nIngrese ID de lapelicula a modificar:\n","\nIngese un ID valido\n",2,50) != -1)
+        if (val_getUnsignedInt(bufferIdModificar,"\nIngrese ID de la pelicula a modificar:","\nIngese un ID valido\n",2,50) != -1)
         {
 
             int index = mov_buscarIndicePorId(listaMovies,lenLista,atoi(bufferIdModificar));
@@ -199,30 +199,30 @@ int mov_modificar(EMovie* listaMovies, int lenLista)
                 char bufferTitulo[50];
                 char bufferGenero[50];
                 char bufferDuracion[50];
-                char bufferDescripcion[50];
+                char bufferDescripcion[1000];
                 char bufferPuntaje[50];
-                char bufferLinkImagen[50];
+                char bufferLinkImagen[1000];
 
-                if (val_getNombre(bufferTitulo,"Ingrese nuevo titulo de la pelicula:\n","Ingrese un titulo valido:\n",2,50)!= -1)
+                if (val_getLink(bufferTitulo,"\nIngrese nuevo titulo de la pelicula:\n","Ingrese un titulo valido:\n",2,50)!= -1)
                 {
                     if (val_getNombre(bufferGenero,"Ingrese nuevo genero de la pelicula:\n","Ingrese un genero valido:\n",2,50) != -1 )
                     {
                         if (val_getUnsignedInt(bufferDuracion,"Ingrese la nueva duracion de la pelicula:\n","Ingrese un numero valido:\n",2,50) != -1 )
                         {
-                            if (val_getNombre(bufferDescripcion,"Ingrese la nueva descripcion de la pelicula\n","\nIngrese una descripcion valida\n",2,50) != -1 )
+                            if (val_getLink(bufferDescripcion,"Ingrese la nueva descripcion de la pelicula\n","\nIngrese una descripcion valida\n",2,1000) != -1 )
                             {
                                 if (val_getUnsignedInt(bufferPuntaje,"Ingrese el nuevo puntaje de la pelicula:\n","Ingrese un numero valido:\n",2,50) != -1 )
                                 {
-                                    if (val_getLink(bufferLinkImagen,"Ingrese el nuevo link de la imagen de la pelicula\n","\nIngrese una link valido\n",2,50) != -1 )
+                                    if (val_getLink(bufferLinkImagen,"Ingrese el nuevo link de la imagen de la pelicula\n","\nIngrese una link valido\n",2,1000) != -1 )
                                     {
 
                                         strncpy(listaMovies[index].titulo,bufferTitulo,50);
                                         strncpy(listaMovies[index].genero,bufferGenero,50);
                                         listaMovies[index].duracion = atoi(bufferDuracion);
-                                        strncpy(listaMovies[index].descripcion,bufferDescripcion,50);
+                                        strncpy(listaMovies[index].descripcion,bufferDescripcion,1000);
                                         listaMovies[index].puntaje = atoi(bufferPuntaje);
-                                        strncpy(listaMovies[index].linkImagen,bufferLinkImagen,50);
-                                        printf("Se han modificado los datos exitosamente.");
+                                        strncpy(listaMovies[index].linkImagen,bufferLinkImagen,1000);
+                                        printf("\nSe han modificado los datos exitosamente.\n");
 
                                         retorno = 0;
                                     }
@@ -277,15 +277,23 @@ int mov_bajaMovie(EMovie* listaMovies, int lenListaMovies)
     return retorno;
 }
 
+/** \brief Lista las pliculas cargadas y muestra todos sus campos
+ *
+ * \param puntero listaEMovie de entidad
+ * \param lenLista int Longitud del listaMovie
+ * \return 0 OK / -1 ERROR de paramatros
+ *
+ */
+
 
 int mov_listarMovies (EMovie* listaMovies,int lenListaMovies)
 {
     int retorno = -1;
     int index;
     int contadorMovies = 0;
-    printf("*************************************************************\n");
-    printf("************************* PELICULAS *************************\n");
-    printf("*************************************************************\n");
+
+    printf("%s\t%s\t\t\t%s\t\t%s\t%s\t\t%s\n","ID","Titulo","Genero","Duracion","Puntaje","Descripcion");
+    printf("*********************************************************************************************************************\n");
     if(listaMovies != NULL && lenListaMovies > 0 )
     {
         for (index=0; index<lenListaMovies; index++)
@@ -293,22 +301,18 @@ int mov_listarMovies (EMovie* listaMovies,int lenListaMovies)
             if(listaMovies[index].flagOcupado == MOVIE_OCUPADO)
             {
                 contadorMovies++;
-                printf("\nID Pelicula: %d\nTitulo: %s\nGenero: %s\nDuracion: %d\nDescripcion: %s\nPuntaje: %d\nLink Imagen: %s\n",listaMovies[index].id,listaMovies[index].titulo,
-                       listaMovies[index].genero,
-                       listaMovies[index].duracion,
-                       listaMovies[index].descripcion,
-                       listaMovies[index].puntaje,
-                       listaMovies[index].linkImagen);
+                printf("%d\t%.15s\t\t%s\t\t%d\t\t%d\t\t%.25s...\n", listaMovies[index].id, listaMovies[index].titulo,
+                    listaMovies[index].genero, listaMovies[index].duracion, listaMovies[index].puntaje,listaMovies[index].descripcion);
+
                 retorno = 0;
             }
         }
-        printf("\n*************************************************************\n");
-        printf("*************************************************************\n");
+
         if(contadorMovies == 0)
         {
             printf("\nNo hay ninguna pelicula cargada en el sistema.\n");
         }
-
+        printf("*********************************************************************************************************************\n");
     }
     return retorno;
 }
@@ -392,11 +396,11 @@ int mov_generarArchivoHtml (EMovie* listaMovies,int lenListaMovies)
 
     FILE *pAntes;
     FILE *pMovie;
-    FILE *pContenido;
+    //FILE *pContenido;
     FILE *pDespues;
     int i;
     char antes[1500];
-    char contenido[500];
+    //char contenido[500];
     char despues[1500];
 
     pMovie=fopen("index.html","w");
@@ -409,16 +413,18 @@ int mov_generarArchivoHtml (EMovie* listaMovies,int lenListaMovies)
         fprintf(pMovie,"%s",antes);
 
 
-        pContenido=fopen("html-contenido.txt","r");
-        fread(contenido,sizeof(char),500,pContenido);
-        fclose(pContenido);
+        //pContenido=fopen("html-contenido.txt","r");
+       // fread(contenido,sizeof(char),500,pContenido);
+        //fclose(pContenido);
 
         for(i=0; i<lenListaMovies; i++)
         {
-            if(listaMovies[i].flagOcupado== MOVIE_OCUPADO)
+            if(listaMovies[i].flagOcupado == MOVIE_OCUPADO)
             {
-                fprintf(pMovie,contenido,(listaMovies+i)->linkImagen, (listaMovies+i)->titulo, (listaMovies+i)->genero,
-                        (listaMovies+i)->puntaje, (listaMovies+i)->duracion, (listaMovies+i)->descripcion);
+                fprintf(pMovie,"<article class='col-md-4 article-intro'><a href='#'><img class='img-responsive img-rounded' src='%s' alt=''></a><h3><a href='#'>%s</a></h3><ul><li>Genero: %s</li><li>Puntaje: %.d</li><li>Duracion:%d</li></ul><p>%s</p></article>", listaMovies[i].linkImagen, listaMovies[i].titulo, listaMovies[i].genero, listaMovies[i].puntaje, listaMovies[i].duracion, listaMovies[i].descripcion);
+
+                /*fprintf(pMovie,contenido,(listaMovies+i)->linkImagen, (listaMovies+i)->titulo, (listaMovies+i)->genero,
+                        (listaMovies+i)->puntaje, (listaMovies+i)->duracion, (listaMovies+i)->descripcion);*/
                 retorno = 0;
             }
         }
