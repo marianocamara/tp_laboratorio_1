@@ -7,9 +7,9 @@
 		<a href='#'>%s</a>
         </h3>
 	<ul>
-		<li>Género: %s</li>
+		<li>Genero: %s</li>
 		<li>Puntaje: %d</li>
-		<li>Duración: %d</li>					
+		<li>Duracion: %d</li>					
 	</ul>
 	<p>%s</p>
 </article>
